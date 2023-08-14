@@ -10,7 +10,7 @@ module.exports = {
 			parserOptions: {
 				ecmaVersion: 2020,
 				sourceType: 'module',
-				project: ['tsconfig.json', 'e2e/tsconfig.json'],
+				project: ['tsconfig.json'],
 				createDefaultProgram: true,
 			},
 			extends: [
