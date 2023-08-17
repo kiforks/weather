@@ -98,6 +98,10 @@ export class WeatherSearchDirective implements WeatherSearch {
 					this.weather.update(() => null);
 				}
 
+				if (error?.cod === HttpResponseStatus.Unauthorized) {
+					alert('Your API_KEY is invalid');
+				}
+
 				this.isLoading.update(() => false);
 
 				return EMPTY;

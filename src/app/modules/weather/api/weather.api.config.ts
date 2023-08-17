@@ -1,5 +1,7 @@
+import { environment } from '../../../../environments/environment';
+
 export abstract class WeatherApiConfig {
-	public static API_KEY = 'f833a0844678dc1e375dd74f688ead95';
+	public static API_KEY = environment.apiKey;
 	public static BASE_URL = 'https://api.openweathermap.org';
 
 	/** GET */
