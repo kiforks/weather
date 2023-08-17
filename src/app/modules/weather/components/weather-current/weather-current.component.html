@@ -1,0 +1,51 @@
+<panel>
+	<panel-title>
+		<mat-icon>today</mat-icon>
+		Search for current weather:
+	</panel-title>
+
+	<panel-body>
+		<weather-search-input class="input" [control]="cityControl"></weather-search-input>
+
+		<mat-spinner *ngIf="isLoading(); else contentRef" class="loader" [diameter]="50"></mat-spinner>
+
+		<ng-template #contentRef>
+			<ng-container *ngIf="weather() as weather; else stubRef">
+				<card class="card">
+					<card-image>
+						<img
+							alt="Weather"
+							height="150"
+							ngSrc="{{ 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png' }}"
+							width="150"
+						/>
+					</card-image>
+					<card-title>{{ weather.weather[0].description }}</card-title>
+					<card-section>
+						<card-text>
+							<mat-icon>location_city</mat-icon>
+							{{ weather.name }}, {{ weather.sys.country }}
+						</card-text>
+						<card-text>
+							<mat-icon>sunny_snowing</mat-icon>
+							{{ weather.main.temp }} {{ weatherTemperatureScale }}
+						</card-text>
+						<card-text>
+							<mat-icon>opacity</mat-icon>
+							{{ weather.main.humidity }}%
+						</card-text>
+					</card-section>
+
+					<card-description>Current weather</card-description>
+				</card>
+			</ng-container>
+
+			<ng-template #stubRef>
+				<stub>
+					<stub-title>No city</stub-title>
+					<stub-description>There is no city found</stub-description>
+				</stub>
+			</ng-template>
+		</ng-template>
+	</panel-body>
+</panel>

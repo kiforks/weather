@@ -1,0 +1,9 @@
+@mixin font-face($weight, $style, $filename) {
+	@font-face {
+		font-weight: $weight;
+		font-family: $font-family-base;
+		font-style: $style;
+		font-display: swap;
+		src: url('/assets/fonts/Roboto/#{$filename}.woff2') format('truetype');
+	}
+}

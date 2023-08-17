@@ -1,0 +1,8 @@
+/* stylelint-disable */
+@mixin init-mobile-styles($selector) {
+	.#{$selector}-mobile {
+		@include media-mobile {
+			@content;
+		}
+	}
+}

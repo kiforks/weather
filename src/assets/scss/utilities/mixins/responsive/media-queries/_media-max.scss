@@ -1,0 +1,14 @@
+/**
+* Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+* Makes the @content apply to the given breakpoint and narrower.
+*/
+@mixin media-max($name, $breakpoints-values: $breakpoints) {
+	$max: breakpoint-max($name, $breakpoints-values);
+	@if $max {
+		@media (max-width: $max) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}

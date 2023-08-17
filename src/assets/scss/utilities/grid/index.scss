@@ -1,0 +1,9 @@
+/* stylelint-disable */
+@import 'grid-params';
+@import 'init-grid';
+
+.grid {
+	grid-row-gap: var(--row-gap, #{$grid-gutter-width});
+
+	@include init-grid;
+}

@@ -1,0 +1,22 @@
+/**
+* Media that spans multiple breakpoint widths.
+* Makes the @content apply between the min and max breakpoints
+*/
+@mixin media-between($lower, $upper, $breakpoints-values: $breakpoints) {
+	$min: breakpoint-min($lower, $breakpoints-values);
+	$max: breakpoint-max($upper, $breakpoints-values);
+	
+	@if $min != null and $max != null {
+		@media (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	} @else if $max == null {
+		@include media-min($lower, $breakpoints-values) {
+			@content;
+		}
+	} @else if $min == null {
+		@include media-max($upper, $breakpoints-values) {
+			@content;
+		}
+	}
+}

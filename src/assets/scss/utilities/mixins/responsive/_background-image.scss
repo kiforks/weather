@@ -1,0 +1,18 @@
+/*
+** Retina css
+** - - - - - - - - - - - - - - - - - - - - - - - - -
+** Example:
+** @include background-image('path/@1-min.jpg', 'path/image@2-min.jpg');
+** - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+@mixin background-image($url, $url2x: false) {
+	background-image: url($url);
+	background-repeat: no-repeat;
+	
+	@if $url2x {
+		@media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
+			background-image: url($url2x);
+		}
+	}
+}

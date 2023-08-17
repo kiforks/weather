@@ -1,0 +1,35 @@
+/*
+	Applies styles to specific breakpoints.
+	
+	For example: card-md - styles will only be applied for extension 768px and above
+	
+	More info about breakpoints you can find here:
+	@see resources/assets/angular/src/assets/sass/utilities/variables/responsive/_breakpoints.scss
+*/
+@mixin init-breakpoint-styles($selector, $grid-breakpoints: $breakpoints, $width: min) {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+		
+		@if $width == min {
+			/**
+			* Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+			* Makes the @content apply to the given breakpoint and wider.
+			*/
+			@include media-min($breakpoint, $grid-breakpoints) {
+				.#{$selector}#{$infix} {
+					@content;
+				}
+			}
+		} @else {
+			/**
+			* Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+			* Makes the @content apply to the given breakpoint and narrower.
+			*/
+			@include media-max($breakpoint, $grid-breakpoints) {
+				.#{$selector}#{$infix} {
+					@content;
+				}
+			}
+		}
+	}
+}

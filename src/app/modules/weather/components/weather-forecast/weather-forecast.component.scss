@@ -1,0 +1,25 @@
+@import 'utilities/index';
+
+:host {
+	display: grid;
+	min-height: 442px;
+}
+
+.input {
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+}
+
+.loader {
+	margin: auto;
+}
+
+ul {
+	display: grid;
+	grid-row-gap: 20px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-indent: 0;
+}

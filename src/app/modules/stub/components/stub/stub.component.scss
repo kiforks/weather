@@ -1,0 +1,25 @@
+@import 'utilities/index';
+
+:host {
+	display: grid;
+	align-content: center;
+	align-items: center;
+	grid-row-gap: 10px;
+	min-height: 200px;
+	padding: 20px;
+	text-align: center;
+	justify-items: center;
+
+	&::ng-deep {
+		.stub-title {
+			font-weight: 600;
+			font-size: $text-heading-md;
+			color: $color-blackgray;
+		}
+
+		.stub-description {
+			font-size: $text-lg;
+			color: $color-gray;
+		}
+	}
+}

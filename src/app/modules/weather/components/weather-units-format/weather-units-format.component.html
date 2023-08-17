@@ -1,0 +1,16 @@
+<panel>
+	<panel-title>
+		<mat-icon panelIcon>thermostat</mat-icon>
+		Choose units of measurement
+	</panel-title>
+
+	<mat-form-field panelBody>
+		<mat-label>Units format</mat-label>
+
+		<mat-select [formControl]="unitsFormatControl">
+			<mat-option [value]="WeatherTemperatureFormat.Celsius">Celsius</mat-option>
+			<mat-option [value]="WeatherTemperatureFormat.Fahrenheit">Fahrenheit</mat-option>
+			<mat-option [value]="WeatherTemperatureFormat.Kelvin">Kelvin</mat-option>
+		</mat-select>
+	</mat-form-field>
+</panel>

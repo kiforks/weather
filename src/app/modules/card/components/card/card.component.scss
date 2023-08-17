@@ -1,0 +1,121 @@
+@import 'utilities/index';
+
+:host {
+	display: grid;
+	border: 1px solid $color-whitegray;
+	border-radius: 8px;
+
+	&::ng-deep {
+		.card-title {
+			padding: 0 15px;
+			font-weight: 600;
+			font-size: $text-heading-sm;
+			text-align: center;
+
+			&::first-letter {
+				text-transform: uppercase;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+		}
+
+		.card-image {
+			justify-self: center;
+			margin-bottom: -30px;
+
+			img {
+				width: 150px;
+				height: 150px;
+				object-fit: contain;
+			}
+		}
+
+		.card-section {
+			display: grid;
+			padding: 0 15px;
+
+			.material-icons {
+				font-size: $icon-size-sm;
+				color: $color-blue;
+			}
+
+			.card-text {
+				display: grid;
+				align-items: center;
+				grid-column-gap: 2px;
+				grid-template-columns: auto 1fr;
+				font-weight: 600;
+				font-size: $text-lg;
+				color: $color-blackgray;
+
+				&:first-child {
+					> * {
+						&:first-child {
+							@include media-mobile {
+								display: none;
+							}
+						}
+					}
+
+					&:not(:last-child) {
+						@include media-mobile {
+							margin-bottom: 10px;
+						}
+					}
+
+					@include media-mobile {
+						justify-self: center;
+						grid-column-end: 3;
+						grid-column-start: 1;
+						font-size: $text-heading-sm;
+						text-align: center;
+					}
+				}
+
+				&:last-child {
+					&:not(:only-child) {
+						justify-self: end;
+						text-align: right;
+					}
+				}
+
+				&:not(:first-child) {
+					&:not(:last-child) {
+						@include media-desktop {
+							justify-self: center;
+							text-align: center;
+						}
+					}
+				}
+			}
+
+			@include media-mobile {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			@include media-desktop {
+				grid-gap: 10px;
+				grid-template-columns: 1fr 1fr 1fr;
+			}
+		}
+
+		.card-description {
+			padding: 15px;
+			font-weight: 600;
+			font-size: $text-lg;
+			text-align: center;
+			color: $color-blackgray;
+
+			&::first-letter {
+				text-transform: uppercase;
+			}
+
+			&:not(:first-child) {
+				margin-top: 15px;
+				border-top: 1px solid $color-whitegray;
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+@import 'utilities/index';
+
+:host {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	border-radius: 8px;
+	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+
+	&::ng-deep {
+		.panel-title {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			font-weight: 600;
+			font-size: $text-heading-sm;
+			line-height: $line-height-heading;
+			border-bottom: 1px solid $color-whitegray;
+
+			@include media-mobile {
+				padding: 10px;
+			}
+
+			@include media-desktop {
+				padding: 15px;
+			}
+		}
+
+		.panel-body {
+			display: flex;
+			flex-direction: column;
+
+			@include media-mobile {
+				padding: 10px;
+			}
+
+			@include media-desktop {
+				padding: 20px 39px;
+			}
+		}
+	}
+}

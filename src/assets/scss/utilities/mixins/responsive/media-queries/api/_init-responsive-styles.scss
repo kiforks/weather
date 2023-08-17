@@ -1,0 +1,16 @@
+/* stylelint-disable */
+@mixin init-responsive-styles($selector, $init-all: true) {
+	@if $init-all == true {
+		@include init-desktop-styles($selector) {
+			@content;
+		}
+		
+		@include init-mobile-styles($selector) {
+			@content;
+		}
+	}
+	
+	.#{$selector} {
+		@content;
+	}
+}

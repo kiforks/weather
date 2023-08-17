@@ -1,0 +1,8 @@
+/* stylelint-disable */
+@mixin init-desktop-styles($selector) {
+	.#{$selector}-desktop {
+		@include media-desktop {
+			@content;
+		}
+	}
+}

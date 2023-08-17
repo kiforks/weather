@@ -1,0 +1,13 @@
+.container {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	padding-right: 15px;
+	padding-left: 15px;
+
+	@include media-desktop {
+		width: 100%;
+		max-width: 650px;
+		margin: 0 auto;
+	}
+}

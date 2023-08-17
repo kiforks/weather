@@ -1,0 +1,16 @@
+@import 'utilities/index';
+
+:host {
+	display: grid;
+	min-height: 442px;
+}
+
+.input {
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+}
+
+.loader {
+	margin: auto;
+}

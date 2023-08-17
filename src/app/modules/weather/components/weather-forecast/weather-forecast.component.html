@@ -1,0 +1,52 @@
+<panel>
+	<panel-title>
+		<mat-icon>calendar_month</mat-icon>
+		Search for 5-day forecast:
+	</panel-title>
+
+	<panel-body>
+		<weather-search-input class="input" [control]="cityControl"></weather-search-input>
+
+		<mat-spinner *ngIf="isLoading(); else contentRef" class="loader" [diameter]="50"></mat-spinner>
+
+		<ng-template #contentRef>
+			<ul *ngIf="weather() as weatherData; else stubRef">
+				<li *ngFor="let weather of weatherList()" card>
+					<card-additional-info>Info</card-additional-info>
+					<card-image>
+						<img
+							alt="Weather"
+							height="150"
+							ngSrc="{{ 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png' }}"
+							width="150"
+						/>
+					</card-image>
+					<card-title>{{ weather.weather[0].description }}</card-title>
+					<card-section>
+						<card-text>
+							<mat-icon>location_city</mat-icon>
+							{{ weatherData.city.name }}, {{ weatherData.city.country }}
+						</card-text>
+						<card-text>
+							<mat-icon>trending_down</mat-icon>
+							{{ weather.main.temp_min }} {{ weatherTemperatureScale }}
+						</card-text>
+						<card-text>
+							<mat-icon>trending_up</mat-icon>
+							{{ weather.main.temp_max }} {{ weatherTemperatureScale }}
+						</card-text>
+					</card-section>
+
+					<card-description>{{ weather.dt_txt | date : 'dd MMMM' }}</card-description>
+				</li>
+			</ul>
+
+			<ng-template #stubRef>
+				<stub>
+					<stub-title>No city</stub-title>
+					<stub-description>There is no city found</stub-description>
+				</stub>
+			</ng-template>
+		</ng-template>
+	</panel-body>
+</panel>
