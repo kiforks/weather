@@ -74,6 +74,12 @@ export class WeatherForecastComponent implements WeatherView {
 	}
 
 	private updateWeatherList(weatherList: WeatherForecast[]): void {
-		this.weatherList.update(() => weatherList.filter((_, index) => index % 8 === 0));
+		const startIdx = 4;
+		const step = 8;
+		const numberOfElements = 5;
+
+		const selectedElements = Array.from({ length: numberOfElements }, (_, i) => weatherList[startIdx + i * step]);
+
+		this.weatherList.update(() => selectedElements);
 	}
 }

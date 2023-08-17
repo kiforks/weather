@@ -2,7 +2,7 @@ import { Directive, inject, WritableSignal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 /** RxJS */
-import { BehaviorSubject, catchError, debounceTime, EMPTY, filter, merge, Observable, skip, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, debounceTime, EMPTY, filter, merge, Observable, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /** Interfaces */
@@ -78,11 +78,12 @@ export class WeatherSearchDirective implements WeatherSearch {
 			filter(city => this.isValidCity(city, this.cityControl.valid)),
 			debounceTime(500)
 		);
-		const changes$ = merge(cityChanges$, this.unitsFormat$);
+
+		const unitsFormatChanges$ = this.unitsFormat$.pipe(filter(() => !!this.weather()));
+		const changes$ = merge(cityChanges$, unitsFormatChanges$);
 
 		changes$
 			.pipe(
-				skip(1),
 				switchMap(() => this.getData()),
 				takeUntilDestroyed()
 			)
@@ -94,14 +95,13 @@ export class WeatherSearchDirective implements WeatherSearch {
 
 		return this.weatherData$.pipe(
 			catchError(({ error }) => {
-				if (error?.cod === HttpResponseStatus.NotFound) {
-					this.weather.update(() => null);
-				}
+				const errorCode = error?.cod.toString();
 
-				if (error?.cod === HttpResponseStatus.Unauthorized) {
+				if (errorCode === HttpResponseStatus.Unauthorized) {
 					alert('Your API_KEY is invalid');
 				}
 
+				this.weather.update(() => null);
 				this.isLoading.update(() => false);
 
 				return EMPTY;
